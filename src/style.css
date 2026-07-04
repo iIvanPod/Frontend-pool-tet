@@ -1,0 +1,453 @@
+/* Billar 8 — DOM overlay styles (lobby, HUD, banners, toasts). */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #101418;
+  color: #e8e6e3;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ----- Game view ---------------------------------------------------------- */
+
+.game-root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 12px 24px;
+  min-height: 100vh;
+}
+
+.phaser-parent {
+  width: 100%;
+  position: relative;
+}
+
+.phaser-parent canvas {
+  display: block;
+  margin: 0 auto;
+  border-radius: 14px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* ----- HUD ---------------------------------------------------------------- */
+
+.hud {
+  width: 100%;
+  max-width: 1163px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px;
+  background: #1a2129;
+  border: 1px solid #2a333d;
+  border-radius: 12px;
+}
+
+.hud-plates {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.plate {
+  min-width: 160px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: #222b35;
+  border: 2px solid transparent;
+}
+
+.plate-turn {
+  border-color: #fcc419;
+  box-shadow: 0 0 12px rgba(252, 196, 25, 0.35);
+}
+
+.plate-name-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.plate-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.plate-you {
+  font-size: 12px;
+  color: #9aa7b3;
+}
+
+.plate-group {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #51cf66;
+}
+
+.plate-group-empty {
+  color: #5c6a77;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.hud-center {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  text-align: right;
+}
+
+.hud-turn {
+  font-size: 15px;
+  color: #c4cdd5;
+}
+
+.hud-turn-mine {
+  color: #fcc419;
+  font-weight: 700;
+}
+
+.hud-connection {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #9aa7b3;
+}
+
+.conn-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.conn-ok {
+  background: #51cf66;
+}
+
+.conn-bad {
+  background: #fa5252;
+}
+
+/* ----- Overlays (lobby / game over) --------------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: radial-gradient(ellipse at center, #17301f 0%, #0d1116 75%);
+  z-index: 40;
+}
+
+.overlay.gameover {
+  background: rgba(10, 13, 17, 0.88);
+  z-index: 50;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 30px 26px;
+  background: #1a2129;
+  border: 1px solid #2a333d;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lobby-title {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 1px;
+}
+
+.lobby-subtitle {
+  margin: 4px 0 22px;
+  color: #9aa7b3;
+  font-size: 14px;
+}
+
+.lobby-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: #9aa7b3;
+}
+
+.text-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  color: #e8e6e3;
+  background: #10151b;
+  border: 1px solid #2f3a45;
+  border-radius: 8px;
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: #51cf66;
+}
+
+.btn {
+  padding: 11px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.12s ease, transform 0.05s ease;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.btn-primary {
+  background: #2f9e44;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #2a333d;
+  color: #e8e6e3;
+  border: 1px solid #3b4854;
+}
+
+.btn-accent {
+  background: #1663c7;
+  color: #fff;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #5c6a77;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #2a333d;
+}
+
+.join-row {
+  display: flex;
+  gap: 8px;
+}
+
+.join-row .text-input {
+  flex: 1;
+}
+
+.reconnect-card {
+  margin-top: 6px;
+  padding: 14px;
+  background: #16202b;
+  border: 1px dashed #2f5a8f;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reconnect-info {
+  margin: 0;
+  font-size: 13px;
+  color: #9fc0e8;
+}
+
+/* ----- Waiting state ------------------------------------------------------ */
+
+.lobby-waiting {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.waiting-title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.copy-row {
+  display: flex;
+  gap: 8px;
+}
+
+.room-id-value {
+  flex: 1;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.waiting-spinner-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  color: #c4cdd5;
+  font-size: 14px;
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 3px solid #2a333d;
+  border-top-color: #51cf66;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-line {
+  margin: 14px 0 0;
+  color: #ff8787;
+  font-size: 13px;
+}
+
+/* ----- Disconnect banner --------------------------------------------------- */
+
+.disconnect-banner {
+  position: absolute;
+  top: 86px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  padding: 12px 22px;
+  background: #7a2a1d;
+  border: 1px solid #b0432f;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffe3dc;
+  white-space: nowrap;
+  max-width: 92vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ----- Game over ----------------------------------------------------------- */
+
+.gameover-card {
+  text-align: center;
+}
+
+.gameover-headline {
+  margin: 0 0 8px;
+  font-size: 40px;
+}
+
+.gameover-win {
+  color: #51cf66;
+}
+
+.gameover-loss {
+  color: #fa5252;
+}
+
+.gameover-reason {
+  margin: 0 0 22px;
+  color: #c4cdd5;
+  font-size: 15px;
+}
+
+/* ----- Toasts --------------------------------------------------------------- */
+
+.toasts {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  padding: 11px 20px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-width: 92vw;
+}
+
+.toast-info {
+  background: #24435c;
+  color: #d8ecff;
+  border: 1px solid #35608a;
+}
+
+.toast-error {
+  background: #5c2424;
+  color: #ffd8d8;
+  border: 1px solid #8a3535;
+}
+
+.toast-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
